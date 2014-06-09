@@ -1,0 +1,19 @@
+defaults: &defaults
+  moves:
+    client_id: <%= ENV['MOVES_CLIENT_ID'] %>
+    client_secret: <%= ENV['MOVES_CLIENT_SECRET'] %>
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+sandbox:
+  <<: *defaults
+
+staging:
+  <<: *defaults
+
+test:
+  <<: *defaults
