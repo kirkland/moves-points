@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609215742) do
+ActiveRecord::Schema.define(version: 20140610215542) do
+
+  create_table "activities", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "kind",             null: false
+    t.date     "date",             null: false
+    t.integer  "distance",         null: false
+    t.string   "moves_identifier", null: false
+    t.integer  "user_id",          null: false
+  end
 
   create_table "oauth_tokens", force: true do |t|
     t.datetime "created_at"
