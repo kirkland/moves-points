@@ -1,0 +1,7 @@
+%h1 Moves Points
+
+%p
+  - if logged_in?
+    Welcome, guy!
+  -else
+    = link_to 'Log In', '/auth/moves/callback'
