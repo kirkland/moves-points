@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20140610215542) do
     t.datetime "expires_at",    null: false
   end
 
+  create_table "summaries", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "kind",       null: false
+    t.date     "date",       null: false
+    t.integer  "distance",   null: false
+    t.integer  "user_id",    null: false
+  end
+
   create_table "users", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
