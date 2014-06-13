@@ -1,4 +1,7 @@
 class Summary < ActiveRecord::Base
+  # Associations
+  belongs_to :user
+
   # Validations
   validates :bicycling_distance, presence: true
   validates :date, presence: true
@@ -6,9 +9,21 @@ class Summary < ActiveRecord::Base
   validates :user, presence: true
   validates :walking_distance, presence: true
 
+  def bicycling_miles
+    bicycling_distance * 0.000621371
+  end
+
   def points
-    (bicycling_distance * 10) +
-      (walking_distance * 30) +
-      (running_distance * 100)
+    (bicycling_miles * 10) +
+      (walking_miles * 30) +
+      (running_miles * 100)
+  end
+
+  def running_miles
+    running_distance * 0.000621371
+  end
+
+  def walking_miles
+    walking_distance * 0.000621371
   end
 end
