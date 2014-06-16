@@ -1,7 +1,7 @@
 %h1 Moves Points
 
 %p
-  - if logged_in?
-    Welcome! (Moves ID: #{@user.moves_user_id})
-  -else
-    = link_to 'Log In', '/auth/moves/callback'
+  Welcome! (Moves ID: #{@user.moves_user_id})
+
+%p
+  You have #{'%.0f' % @user.total_points} total points.

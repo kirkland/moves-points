@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def total_points
+    summaries.sum &:points
+  end
+
   private
 
   def current_access_token
