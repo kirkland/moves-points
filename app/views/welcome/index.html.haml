@@ -5,3 +5,9 @@
 
 %p
   You have #{'%.0f' % @user.total_points} total points.
+
+%h2 Points by Week
+%ul
+  - @user.points_by_week.reverse.each do |report_item|
+    %li
+      Week of #{report_item[:week_starting_on]}: #{'%.0f' % report_item[:points]}
