@@ -5,6 +5,7 @@ class Summary < ActiveRecord::Base
   # Validations
   validates :bicycling_distance, presence: true
   validates :date, presence: true
+  validates_uniqueness_of :date, scope: :user_id
   validates :running_distance, presence: true
   validates :user, presence: true
   validates :walking_distance, presence: true
