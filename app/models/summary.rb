@@ -9,7 +9,12 @@ class Summary < ActiveRecord::Base
   validates :user, presence: true
   validates :walking_distance, presence: true
 
+  # Scopes
+  scope :between_dates,
+    lambda { |start_date, end_date| where('date BETWEEN ? AND ?', start_date, end_date) }
+
   def bicycling_miles
+    # Convert meters to miles
     bicycling_distance * 0.000621371
   end
 

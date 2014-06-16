@@ -17,11 +17,40 @@ class User < ActiveRecord::Base
     end
   end
 
+  def points_by_week
+    report = []
+    date = first_sunday
+
+    while ( date < Date.today )
+      report_item = { week_starting_on: date }
+
+      week_summaries = summaries.between_dates(date, date + 6.days)
+      report_item[:points] = week_summaries.sum(&:points)
+
+      report << report_item
+      date += 1.week
+    end
+
+    report
+  end
+
   def total_points
     summaries.sum &:points
   end
 
   private
+
+  def first_sunday
+    date = summaries.order('date ASC').first.date
+    if date.sunday?
+      date
+    else
+      while ( !date.sunday? )
+        date -= 1.day
+      end
+      date
+    end
+  end
 
   def current_access_token
     oauth_tokens.order(:created_at).last.try :access_token
