@@ -2,7 +2,7 @@ class CreateUsersAndOauthTokens < ActiveRecord::Migration
   def change
     create_table :users do |t|
       t.timestamps
-      t.integer :moves_user_id, null: false
+      t.string :moves_user_id, null: false
     end
 
     create_table :oauth_tokens do |t|
