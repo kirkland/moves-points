@@ -2,6 +2,6 @@
 
 %p
   - if logged_in?
-    Welcome! (Moves ID: #{current_user.moves_user_id})
+    Welcome! (Moves ID: #{@user.moves_user_id})
   -else
     = link_to 'Log In', '/auth/moves/callback'
