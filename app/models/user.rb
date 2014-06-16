@@ -38,6 +38,23 @@ class User < ActiveRecord::Base
     summaries.sum &:points
   end
 
+  def update_data(oldest_date = nil)
+    if oldest_date
+      date = oldest_date
+    else
+      date = summaries.order(:date).first.date
+    end
+
+    while (date < Date.today )
+      unless summaries.where(date: date).exists?
+        puts "Fetching data for #{date}"
+        fetch_data_for_dates date, date
+      end
+
+      date += 1.day
+    end
+  end
+
   private
 
   def first_sunday
