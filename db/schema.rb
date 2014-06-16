@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20140610215542) do
   create_table "users", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "moves_user_id", null: false
+    t.string   "moves_user_id", null: false
   end
 
 end

@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   end
 
   def points_by_week
+    return [] if summaries.blank?
+
     report = []
     date = first_sunday
     found_earliest_data = false
