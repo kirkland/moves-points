@@ -20,14 +20,23 @@ class User < ActiveRecord::Base
   def points_by_week
     report = []
     date = first_sunday
+    found_earliest_data = false
 
     while ( date < Date.today )
       report_item = { week_starting_on: date }
 
       week_summaries = summaries.between_dates(date, date + 6.days)
-      report_item[:points] = week_summaries.sum(&:points)
+      points = week_summaries.sum(&:points)
 
-      report << report_item
+      if !found_earliest_data && points > 0
+        found_earliest_data = true
+      end
+
+      if found_earliest_data
+        report_item[:points] = points
+        report << report_item
+      end
+
       date += 1.week
     end
 
