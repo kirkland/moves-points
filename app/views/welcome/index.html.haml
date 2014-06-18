@@ -11,3 +11,5 @@
   - @user.points_by_week.reverse.each do |report_item|
     %li
       Week of #{report_item[:week_starting_on]}: #{'%.0f' % report_item[:points]}
+
+= link_to 'Logout', logout_path

@@ -52,6 +52,8 @@ class User < ActiveRecord::Base
   def update_data(oldest_date = nil)
     if oldest_date
       date = oldest_date
+    elsif summaries.blank?
+      date = Date.today - 1.month
     else
       date = summaries.order(:date).first.date
     end

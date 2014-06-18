@@ -11,7 +11,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user=(user)
-    session[:moves_user_id] = user.moves_user_id
+    if user
+      session[:moves_user_id] = user.moves_user_id
+    else
+      session.delete :moves_user_id
+    end
   end
 
   def logged_in?
