@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
       summary.bicycling_distance = result[:bicycling].presence.try(:to_i) || 0
       summary.running_distance = result[:running].presence.try(:to_i) || 0
       summary.walking_distance = result[:walking].presence.try(:to_i) || 0
+      summary.skateboarding_distance = result[:skateboarding].presence.try(:to_i) || 0
 
       summary.save!
     end
