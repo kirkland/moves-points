@@ -56,15 +56,12 @@ class User < ActiveRecord::Base
     elsif summaries.blank?
       date = Date.today - 1.month
     else
-      date = summaries.order(:date).first.date
+      date = [summaries.order(:date).last.date, Date.today - 1.day].min
     end
 
     while (date <= Date.today )
-      unless summaries.where(date: date).exists?
-        puts "Fetching data for #{date}"
-        fetch_data_for_dates date, date
-      end
-
+      puts "Fetching data for #{date}"
+      fetch_data_for_dates date, date
       date += 1.day
     end
   end
