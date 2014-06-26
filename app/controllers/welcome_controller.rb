@@ -5,6 +5,7 @@ class WelcomeController < ApplicationController
     end
 
     @user = current_user
+    @user.update_data
   end
 
   def logged_out
