@@ -7,6 +7,7 @@ class Summary < ActiveRecord::Base
   validates :date, presence: true
   validates_uniqueness_of :date, scope: :user_id
   validates :running_distance, presence: true
+  validates :skateboarding_distance, presence: true
   validates :user, presence: true
   validates :walking_distance, presence: true
 
@@ -21,12 +22,17 @@ class Summary < ActiveRecord::Base
 
   def points
     (bicycling_miles * 10) +
+      (skateboarding_miles * 20) +
       (walking_miles * 30) +
       (running_miles * 100)
   end
 
   def running_miles
     running_distance * 0.000621371
+  end
+
+  def skateboarding_miles
+    skateboarding_distance * 0.000621371
   end
 
   def walking_miles

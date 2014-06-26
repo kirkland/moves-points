@@ -24,6 +24,8 @@ class MovesApi
           rv[:bicycling] = datum['distance']
         elsif datum['activity'] == 'running' # Guess the name
           rv[:running] = datum['distance']
+        elsif datum['activity'] == 'skateboarding'
+          rv[:skateboarding] = datum['distance']
         end
       end
     end

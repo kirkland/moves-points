@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610215542) do
+ActiveRecord::Schema.define(version: 20140626141405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,11 +38,12 @@ ActiveRecord::Schema.define(version: 20140610215542) do
   create_table "summaries", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "date",               null: false
-    t.integer  "user_id",            null: false
-    t.integer  "bicycling_distance", null: false
-    t.integer  "running_distance",   null: false
-    t.integer  "walking_distance",   null: false
+    t.date     "date",                               null: false
+    t.integer  "user_id",                            null: false
+    t.integer  "bicycling_distance",                 null: false
+    t.integer  "running_distance",                   null: false
+    t.integer  "walking_distance",                   null: false
+    t.integer  "skateboarding_distance", default: 0, null: false
   end
 
   create_table "users", force: true do |t|
