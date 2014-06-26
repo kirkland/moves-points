@@ -13,6 +13,9 @@ class MovesApi
       raw_data = []
     end
 
+    # Maybe it was nil!
+    raw_data ||= []
+
     Hash.new.tap do |rv|
       raw_data.each do |datum|
         if datum['activity'] == 'walking'
