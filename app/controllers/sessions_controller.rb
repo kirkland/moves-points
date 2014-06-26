@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
     user = User.where(moves_user_id: auth_hash['uid'].to_s).first_or_create
     user.oauth_tokens.create_from_auth_hash auth_hash
     self.current_user = user
-    user.update_data
     redirect_to '/'
   end
 
