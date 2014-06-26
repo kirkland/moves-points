@@ -8,12 +8,13 @@ class User < ActiveRecord::Base
     (start_date..end_date).each do |date|
       result = api.summary(date)
 
-      summaries.create! do |summary|
-        summary.date = date
-        summary.bicycling_distance = result[:bicycling].presence.try(:to_i) || 0
-        summary.running_distance = result[:running].presence.try(:to_i) || 0
-        summary.walking_distance = result[:walking].presence.try(:to_i) || 0
-      end
+      summary = summaries.where(date: date).first_or_create
+
+      summary.bicycling_distance = result[:bicycling].presence.try(:to_i) || 0
+      summary.running_distance = result[:running].presence.try(:to_i) || 0
+      summary.walking_distance = result[:walking].presence.try(:to_i) || 0
+
+      summary.save!
     end
   end
 
@@ -58,7 +59,7 @@ class User < ActiveRecord::Base
       date = summaries.order(:date).first.date
     end
 
-    while (date < Date.today )
+    while (date <= Date.today )
       unless summaries.where(date: date).exists?
         puts "Fetching data for #{date}"
         fetch_data_for_dates date, date
