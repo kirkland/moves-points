@@ -3,6 +3,12 @@ class User < ActiveRecord::Base
   has_many :oauth_tokens
   has_many :summaries
 
+  def chart_data
+    summaries.collect do |summary|
+      [summary.date.to_s, summary.points]
+    end
+  end
+
   def fetch_data_for_dates(start_date, end_date)
     api = MovesApi.new(current_access_token)
     (start_date..end_date).each do |date|

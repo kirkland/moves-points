@@ -1,15 +1,27 @@
-%h1 Moves Points
+%head
+  %script{src: "https://www.google.com/jsapi", type: "text/javascript"}
 
-%p
-  Welcome! (Moves ID: #{@user.moves_user_id})
+%body
+  %h1 Moves Points
 
-%p
-  You have #{'%.0f' % @user.total_points} total points.
+  %p
+    Welcome! (Moves ID: #{@user.moves_user_id})
 
-%h2 Points by Week
-%ul
-  - @user.points_by_week.reverse.each do |report_item|
-    %li
-      Week of #{report_item[:week_starting_on]}: #{'%.0f' % report_item[:points]}
+  %p
+    You have #{'%.0f' % @user.total_points} total points.
 
-= link_to 'Logout', logout_path
+  #chart_div
+
+
+  %h2 Points by Week
+  %ul
+    - @user.points_by_week.reverse.each do |report_item|
+      %li
+        Week of #{report_item[:week_starting_on]}: #{'%.0f' % report_item[:points]}
+
+  = link_to 'Logout', logout_path
+
+:javascript
+  $(function() {
+    summary(#{@user.chart_data});
+  });
